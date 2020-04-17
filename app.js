@@ -1,6 +1,3 @@
-
-//Dagsläge: Express, och database fungerar. Det som fungerar är Get cart & get products
-
 const express = require('express');
 const app = express();
 const lowdb = require('lowdb');
@@ -10,20 +7,19 @@ const database = lowdb(adapter);
 const porting = process.env.PORT || 3000;
 const cors = require('cors') 
 
-const bodyParser = require("body-parser");
+// const bodyParser = require("body-parser");
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({
+//     extended: true
+// }));
 app.use(cors())
-
 
 
 
 // ******* INITIATE GET PRODUCTS *******
 const getProducts = async () => {
-   return await database.get('products');
+   return await database.get('products')
 }
 
 // ******* INITIATE GET CART *******
@@ -35,7 +31,9 @@ const getCart = async () => {
 // ******* GET ALL PRODUCTS *******
 app.get('/products', async (req, res) => {
     products = await getProducts();
-    // data = products.value();     // Can use product.find(id:1).value(); if you want
+    // data = products.find({id:1});
+    // data = products.fins()[0];
+
     res.send(products);
 })
 
@@ -43,51 +41,37 @@ app.get('/products', async (req, res) => {
 // ******* GET ALL CART *******
 app.get('/cart', async (req, res) => {
     cart = await getCart();
-    data = cart.value()
-    // res.send({message: 'party'});
-    res.send(data);
+    // data = cart.value()
+    res.send(cart);
 
 });
 
 
 
-// RANDOM SHIT 27:25
-// app.get('/cart/:id', async (req, res) => {
-//     res.send(req.params.id);
-// } );
+
+// ADD ITEM TO CART ****** ONLY HARDCODED ID FROM ""PRODUCTS"
 
 
-
-// ADD ITEM TO CART
 app.post('/add', async (req, res) => {
-    prod = await database.get('products').find({ id: 1 }).value();
 
-cart = await database.get('cart')
-.push(prod)
-// .write()
-;
+    // if(id: id === id:id) {
 
-res.send(cart)
-
-});
-
-
-
-// const findIdProducts = async (id) => {
-//     const response = await database.get('products').find({ id: id }).value();
-    // if (response = !true) {
-    //  return response;
+    // }; else {
+    
     // }
-//  }
 
+    product = await database.get('products')
+        .find({ id:1 },)
+        .value();
 
+    addToCart = await database.get('cart')
+        .push(product)
+        .find()
+        .assign({'quantity': 1})
+        .write();
 
-
-
-
-
-
-
+    res.send(addToCart)
+});
 
 
 // CREATE LOCALHOST
@@ -101,15 +85,6 @@ app.use((req, res,) =>{
     res.status(404).send("404 site does not exist");
 });
 
-
-
-
-// tryck på product.
-// Om product redan är tillagd får du ett felmeddelande. id == id message error
-// om produkten inte är tillagd. push. id, namn, pris, bild
-// 
-// 
-// 
 
 
 /*
