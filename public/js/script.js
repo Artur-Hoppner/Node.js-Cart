@@ -5,12 +5,30 @@ async function getProduct(){
     let response = await get.json();
     console.log(response);
     console.log(response[1].price);
+    console.log(response[2]);
+
+    addItem(response);
+
+
+
 }catch (err) {
     console.error(err)
     }
 };
 
-getProduct()
+getProduct();
+
+// CHANGE: create own list se Programming ********************
+function addItem(response){
+    response.forEach(
+        (item) => {
+            document.getElementById("demo").innerHTML += item.name + "<br>"; 
+            document.getElementById("demo").innerHTML += item.price + "<br>"; 
+            document.getElementById("demo").innerHTML += item.img + "<br>"; 
+      }
+)};
+
+
 
 // ******** GET ALL CART ********
 async function getCart(){
@@ -23,6 +41,6 @@ async function getCart(){
     }
 };
 
-getCart()
+getCart();
 
 

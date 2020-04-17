@@ -10,54 +10,82 @@ const database = lowdb(adapter);
 const porting = process.env.PORT || 3000;
 const cors = require('cors') 
 
+const bodyParser = require("body-parser");
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(cors())
 
 
 
 
-// GET PRODUCTS
+// ******* INITIATE GET PRODUCTS *******
 const getProducts = async () => {
    return await database.get('products');
 }
 
-app.get('/products', async (req, res) => {
-    products = await getProducts();
-    data = products.value();
-    res.send(data);
-})
-// Use product.find(id:1).value(); if you want
-
-
-// GET CART
+// ******* INITIATE GET CART *******
 const getCart = async () => {
     return await database.get('cart');
 }
 
+
+// ******* GET ALL PRODUCTS *******
+app.get('/products', async (req, res) => {
+    products = await getProducts();
+    // data = products.value();     // Can use product.find(id:1).value(); if you want
+    res.send(products);
+})
+
+
+// ******* GET ALL CART *******
 app.get('/cart', async (req, res) => {
     cart = await getCart();
     data = cart.value()
-    res.send(cart);
+    // res.send({message: 'party'});
+    res.send(data);
+
 });
 
 
-//RANDOM SHIT 27:25
-app.get('/cart/:id', async (req, res) => {
-    res.send(req.params.id);
-} );
+
+// RANDOM SHIT 27:25
+// app.get('/cart/:id', async (req, res) => {
+//     res.send(req.params.id);
+// } );
+
+
 
 // ADD ITEM TO CART
-// app.post('cart/addItem', (req, res) => {
+app.post('/add', async (req, res) => {
+    prod = await database.get('products').find({ id: 1 }).value();
 
-//     res.send('')
-// });
+cart = await database.get('cart')
+.push(prod)
+// .write()
+;
 
-// app.post('/', function (req, res) {
-//     res.send('POST request to homepage')
-//   })
+res.send(cart)
+
+});
 
 
-// REMOVE ITEM FROM CART
-// app.delete(/cart/removeitem)
+
+// const findIdProducts = async (id) => {
+//     const response = await database.get('products').find({ id: id }).value();
+    // if (response = !true) {
+    //  return response;
+    // }
+//  }
+
+
+
+
+
+
+
 
 
 
@@ -76,28 +104,61 @@ app.use((req, res,) =>{
 
 
 
+// tryck på product.
+// Om product redan är tillagd får du ett felmeddelande. id == id message error
+// om produkten inte är tillagd. push. id, namn, pris, bild
+// 
+// 
+// 
+
+
+/*
+
+addToCart(state, item) {
+      
+    state.cart.push({
+      id: item.id , //getting duplicate error
+      price: item.price,
+      title: item.title,
+      quantity: 1
+    });
+  },
+
+addItem({commit, state}, item) {
+
+    let index = item.id
+    if(state.cart.find(i => i.id === item.id)) {
+      commit("updateItem", index);
+    }else{
+      commit("addToCart", item);
+    }
+  }
+
+*/
+
+
+
+
+
 
 
 // EARLIER ADD ITEM
 // const addToCart = async (id) => {
-//     const res = await database.get('products').find({ id: id }).has().value();
+//     const res = await database.get('products').find({ id: 1 }).has().value();
 //     if (res = true) {
 //      return res;
 //     }
 //  }
 
-//  app.post('/cart/add', async (req, res) => {
+//  app.post('/adding', async (req, res) => {
 //     const id = req.query.id;
 //     const data = await addToCart(parseInt(id));
 //     res.send(data);
 
-//     const response = await database.get('cart').push(response).write();
-//     // return response;
+//     const response = await database.get('cart').push(data).write();
 //     res.send(response);
 
 // });
-
-
 
 
 
@@ -122,34 +183,6 @@ app.use((req, res,) =>{
 //__________________________________________________________________________________________
 
 
-
-
-
-
-
-
-
-// HOW TO:
-/*
-https://expressjs.com/en/guide/routing.html
-https://medium.com/@etiennerouzeaud/how-create-an-api-restfull-in-express-node-js-without-database-b030c687e2ea
-*/
-
-
-// Change the 404 message modifing the middleware
-
-
-
-
-
-        /* Felmeddelande produkter */
-//___________________________________________________________________________
-/*
-1.   Man ska inte kunna lägga till samma produkt i varukorgen igen.
-2.   Man ska få ett felmeddelande om man försöker lägga till en produkt som inte finns.
-3.   Man ska få ett felmeddelande om man försöker ta bort en produkt som inte finns.
-*/
-//___________________________________________________________________________
 
 
 
