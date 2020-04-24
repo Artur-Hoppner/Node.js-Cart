@@ -30,9 +30,6 @@ const getCart = async () => {
 // ******* GET ALL PRODUCTS *******
 app.get('/products', async (req, res) => {
     products = await getProducts();
-    // data = products.find({id:1});
-    // data = products.fins()[0];
-
     res.send(products);
 })
 
@@ -40,7 +37,6 @@ app.get('/products', async (req, res) => {
 // ******* GET ALL CART *******
 app.get('/cart', async (req, res) => {
     cart = await getCart();
-    // data = cart.value()
     res.send(cart);
 });
 
@@ -50,7 +46,7 @@ app.post('/addToCart', async (req, res) => {
     const bodyitemId = req.body.productId
  
         product = await database.get('products')
-          .findIndex( {id:bodyitemId})
+          .find( {id:bodyitemId})
           .value();
 
         cartId = await database.get('cart')
@@ -59,17 +55,22 @@ app.post('/addToCart', async (req, res) => {
 
         addToCart = await database.get('cart')   
 
+
+        console.log(cartId.id, "CartID")
+        console.log(bodyitemId, "bodyid")
+
     if(cartId === undefined) {
           console.log(" Running if: add item to cart")
-          adding = addToCart
+          adding = await addToCart
             .push(product)
             .write();
             
           res.send(adding)
 
-    } if (cartId == bodyitemId) {
-          console.log(" Running else if: Increment cart-item")
+    } else if (cartId.id == bodyitemId) {
         try {
+          console.log(" Running else if: Increment cart-item")
+
           itemId = await addToCart
           .find({id:bodyitemId})
           .value()
@@ -86,22 +87,17 @@ app.post('/addToCart', async (req, res) => {
           } catch(err) {
           console.log(err)
         }
-    } else {
-          console.log("shit went down and you did the impossible and tried to add a product thats not in our database. Congratulation for being a hacker or just a dumbass!")
+    } 
+    else {
+      res.status(404).send("Computor says no! https://tenor.com/view/computer-says-no-no-gif-12232216");
+      console.log("shit went down and you did the impossible and tried to add a product thats not in our database. Congratulation for being a hacker or just a dumbass!")
       }
 
 });
 
-
+// ******* Decrement and remove cart-item *******
 app.delete("/delete", async (request, response) => {
 
-  /*
-  1 recive id
-  2 search id in cart
-  3 if: recived id === !id: msg: product doesnt exist in in cart
-  4 if else: id === id decrement quantity of id object
-      4.1 if quantity of id =<0 
-   */
     data = await database.get('cart')
       .remove({id:1})
       .write();
@@ -109,93 +105,14 @@ app.delete("/delete", async (request, response) => {
 });
 
 
-
-
-// CREATE LOCALHOST
+// ******* CREATE LOCALHOST *******
 app.listen(porting, () => 
 console.log(`Creating server on port: ${porting}`))
 
 
 
-// ERROR
+// ERROR FOR ANY TRY ON PORT 3000 THAT DOESNT EXIST
 app.use((req, res,) =>{
     res.status(404).send("404 site does not exist");
 });
 
-
-
-/*
-
-addToCart(state, item) {
-      
-    state.cart.push({
-      id: item.id , //getting duplicate error
-      price: item.price,
-      title: item.title,
-      quantity: 1
-    });
-  },
-
-addItem({commit, state}, item) {
-
-    let index = item.id
-    if(state.cart.find(i => i.id === item.id)) {
-      commit("updateItem", index);
-    }else{
-      commit("addToCart", item);
-    }
-  }
-
-*/
-
-
-
-
-
-
-
-// EARLIER ADD ITEM
-// const addToCart = async (id) => {
-//     const res = await database.get('products').find({ id: 1 }).has().value();
-//     if (res = true) {
-//      return res;
-//     }
-//  }
-
-//  app.post('/adding', async (req, res) => {
-//     const id = req.query.id;
-//     const data = await addToCart(parseInt(id));
-//     res.send(data);
-
-//     const response = await database.get('cart').push(data).write();
-//     res.send(response);
-
-// });
-
-
-
-
-
-
-
-
-
-
-
-app.post('/addingitem/:id', async (req, res) => {
-
-    const itemId = req.params.id
-
-
-
-   
-  addToCart = await database.get('cart')
-
-  adding = addToCart
-      .push(itemId)
-      .write();
-
-  res.send(adding)
-
-
-});
