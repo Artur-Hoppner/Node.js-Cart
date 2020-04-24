@@ -29,8 +29,6 @@ Du ska i denna uppgift bygga en front-end för din e-handelsida och anropa ditt 
 **För Väl Godkänt krävs**
 * Allt i Godkänt.
 * Att din JavaScript-kod är indelad i moduler (finns inget krav på antal).
-* Att du har gjort en code review på en annan klasskamrats kod. Du ska i din inlämning bifoga ett dokument med namnet på personen du har gjort
-din code review på och tre saker som du tycker är bra samt en sak som kan förbättras.
 
 Inlämning sker via Github och Learnpoint. Ladda upp ditt projekt på Github. Gå sedan in på Learnpoint och under innehåll finns det en inlämningsuppgift där du ska posta din länk till ditt repo. Bifoga även med ditt dokument gällande code review om du satsar på Väl Godkänt.
 

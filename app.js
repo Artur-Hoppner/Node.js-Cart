@@ -6,21 +6,20 @@ const adapter = new FileSync('database.json');
 const database = lowdb(adapter);
 const porting = process.env.PORT || 3000;
 const cors = require('cors') 
+const bodyParser = require("body-parser");
 
-// const bodyParser = require("body-parser");
-
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({
-//     extended: true
-// }));
 app.use(cors())
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 
 // ******* INITIATE GET PRODUCTS *******
 const getProducts = async () => {
    return await database.get('products')
 }
+
 
 // ******* INITIATE GET CART *******
 const getCart = async () => {
@@ -43,35 +42,73 @@ app.get('/cart', async (req, res) => {
     cart = await getCart();
     // data = cart.value()
     res.send(cart);
+});
+
+
+// ******* ADD ITEM TO CART ****** 
+app.post('/addToCart', async (req, res) => {
+    const bodyitemId = req.body.productId
+ 
+        product = await database.get('products')
+          .findIndex( {id:bodyitemId})
+          .value();
+
+        cartId = await database.get('cart')
+          .find( {id:bodyitemId} )
+          .value();
+
+        addToCart = await database.get('cart')   
+
+    if(cartId === undefined) {
+          console.log(" Running if: add item to cart")
+          adding = addToCart
+            .push(product)
+            .write();
+            
+          res.send(adding)
+
+    } if (cartId == bodyitemId) {
+          console.log(" Running else if: Increment cart-item")
+        try {
+          itemId = await addToCart
+          .find({id:bodyitemId})
+          .value()
+
+          itemQuantity = itemId.quantity +1;
+
+          increment = await addToCart
+          .find({id:bodyitemId})
+          .assign({quantity: itemQuantity})
+          .write()
+
+          res.send(increment)
+        
+          } catch(err) {
+          console.log(err)
+        }
+    } else {
+          console.log("shit went down and you did the impossible and tried to add a product thats not in our database. Congratulation for being a hacker or just a dumbass!")
+      }
 
 });
 
 
+app.delete("/delete", async (request, response) => {
 
-
-// ADD ITEM TO CART ****** ONLY HARDCODED ID FROM ""PRODUCTS"
-
-
-app.post('/add', async (req, res) => {
-
-    // if(id: id === id:id) {
-
-    // }; else {
-    
-    // }
-
-    product = await database.get('products')
-        .find({ id:1 },)
-        .value();
-
-    addToCart = await database.get('cart')
-        .push(product)
-        .find()
-        .assign({'quantity': 1})
-        .write();
-
-    res.send(addToCart)
+  /*
+  1 recive id
+  2 search id in cart
+  3 if: recived id === !id: msg: product doesnt exist in in cart
+  4 if else: id === id decrement quantity of id object
+      4.1 if quantity of id =<0 
+   */
+    data = await database.get('cart')
+      .remove({id:1})
+      .write();
+      response.send(data)
 });
+
+
 
 
 // CREATE LOCALHOST
@@ -142,26 +179,23 @@ addItem({commit, state}, item) {
 
 
 
-//__________________________________________________________________________________________
-// body-parser extract the entire body portion of an incoming request stream and exposes it on req.body.
-// const bodyParser = require("body-parser");
-//  * bodyParser.urlencoded(options)
-//  * Parses the text as URL encoded data (which is how browsers tend to send form data from regular forms set to POST)
-//  * and exposes the resulting object (containing the keys and values) on req.body
-//  *
-// app.use(bodyParser.urlencoded({
-//     extended: true
-// }));
-// *bodyParser.json(options)
- // * Parses the text as JSON and exposes the resulting object on req.body / request.body.
-// app.use(bodyParser.json());
-//__________________________________________________________________________________________
 
 
 
+app.post('/addingitem/:id', async (req, res) => {
+
+    const itemId = req.params.id
 
 
 
-// post för lägga till en produkt + kallar på en funktion för att köra db.get osv
+   
+  addToCart = await database.get('cart')
 
-// app.delete för att ta bort produkter i + kallar på en funktion för att köra db.get osv
+  adding = addToCart
+      .push(itemId)
+      .write();
+
+  res.send(adding)
+
+
+});
