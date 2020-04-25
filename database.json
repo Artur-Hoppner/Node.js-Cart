@@ -5,28 +5,28 @@
       "name": "pen",
       "img": "url",
       "price": 20,
-      "quantity": 1
+      "quantity": 12
     },
     {
       "id": 2,
       "name": "paper",
       "img": "url",
       "price": 10,
-      "quantity": 1
+      "quantity": 3
     },
     {
       "id": 3,
       "name": "penholder",
       "img": "url",
       "price": 102,
-      "quantity": 1
+      "quantity": 2
     },
     {
       "id": 4,
       "name": "pen",
       "img": "url",
       "price": 60,
-      "quantity": 1
+      "quantity": 3
     },
     {
       "id": 5,
@@ -52,11 +52,32 @@
   ],
   "cart": [
     {
-      "id": 7,
-      "name": "coffe",
+      "id": 2,
+      "name": "paper",
       "img": "url",
-      "price": 200000,
-      "quantity": 1
+      "price": 10,
+      "quantity": 3
+    },
+    {
+      "id": 1,
+      "name": "pen",
+      "img": "url",
+      "price": 20,
+      "quantity": 12
+    },
+    {
+      "id": 4,
+      "name": "pen",
+      "img": "url",
+      "price": 60,
+      "quantity": 3
+    },
+    {
+      "id": 3,
+      "name": "penholder",
+      "img": "url",
+      "price": 102,
+      "quantity": 2
     }
   ]
 }

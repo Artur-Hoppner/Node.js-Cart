@@ -1,3 +1,4 @@
+
 // ******** GET ALL PRODUCTS ********
 async function getProduct(){
     try {
@@ -27,13 +28,24 @@ function productList(response){
             productPrice.innerHTML = item.price;
             productPrice.classList.add("product-price");
             productListContainer.append(productPrice);
+            
+            // productImg = document.createElement("img");
+            
+            // productImg.setAttribute("src", item.img);
+            // productListContainer.append(productImg);
+
+            let productImg = document.createElement("img");
+            console.log(item.img)
+            productImg.src = "nhjdfks";
+            console.log(productImg)
+            productListContainer.appendChild(productImg);
+            console.log(productImg)
 
             incrementButton = document.createElement('BUTTON');
             incrementButton.innerHTML = "Add Product";
-            incrementButton.classList.add("add-product");
+            incrementButton.classList.add("jdkjslf");
             productListContainer.append(incrementButton);
 
-    
             incrementButton.addEventListener("click", () => {
                 productId = item.id
                 addProductToCart(productId);
@@ -76,7 +88,7 @@ async function getCart(){
 };
 getCart();
 
-// ******** Add cart to html elementa ********
+// ******** Add cartProduct to html elementa ********
 function cartList(response){
     response.forEach(
         (item) => {
@@ -97,9 +109,14 @@ function cartList(response){
             productquantity.classList.add("cart-quantity");
             cartListContainer.append(productquantity);
 
+            totalPrice = document.createElement('li');
+            totalPrice.innerHTML += item.price * item.quantity;
+            totalPrice.classList.add("total-price");
+            cartListContainer.append(totalPrice);
+
             incrementButton = document.createElement('BUTTON');
             incrementButton.innerHTML = "Increase";
-            incrementButton.classList.add("increment-button");
+            incrementButton.classList.add("nes-btn");
             cartListContainer.append(incrementButton);
 
             incrementButton.addEventListener("click", () => {
@@ -109,7 +126,7 @@ function cartList(response){
 
             decrementButton = document.createElement('BUTTON');
             decrementButton.innerHTML = "Decrease";
-            decrementButton.classList.add("dencrement-button");
+            decrementButton.classList.add("nes-btn", "decrement-button");
             cartListContainer.append(decrementButton);
 
             decrementButton.addEventListener("click", () => {
@@ -119,10 +136,6 @@ function cartList(response){
         }
 )};
 
-
-
-
-deleteCartItem(productId);
 
 function deleteCartItem(productId) {
     const url = 'http://localhost:3000/decrement';
