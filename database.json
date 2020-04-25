@@ -52,48 +52,6 @@
   ],
   "cart": [
     {
-      "id": 2,
-      "name": "paper",
-      "img": "url",
-      "price": 10,
-      "quantity": 2
-    },
-    {
-      "id": 1,
-      "name": "pen",
-      "img": "url",
-      "price": 20,
-      "quantity": 6
-    },
-    {
-      "id": 3,
-      "name": "penholder",
-      "img": "url",
-      "price": 102,
-      "quantity": 4
-    },
-    {
-      "id": 4,
-      "name": "pen",
-      "img": "url",
-      "price": 60,
-      "quantity": 1
-    },
-    {
-      "id": 5,
-      "name": "computor",
-      "img": "url",
-      "price": 200,
-      "quantity": 1
-    },
-    {
-      "id": 6,
-      "name": "copymachine",
-      "img": "url",
-      "price": 20,
-      "quantity": 1
-    },
-    {
       "id": 7,
       "name": "coffe",
       "img": "url",

@@ -43,6 +43,58 @@ app.get('/cart', async (req, res) => {
 
 // ******* ADD ITEM TO CART ****** 
 app.post('/addToCart', async (req, res) => {
+  try {
+    const bodyitemId = req.body.productId
+    
+        product = await database.get('products')
+          .find( {id:bodyitemId})
+          .value();
+
+        cartId = await database.get('cart')
+          .find( {id:bodyitemId} )
+          .value();
+
+        cartObject = await database.get('cart')   
+
+
+    if(cartId == undefined) {
+          console.log(" Running if: add item to cart")
+          addingToCart = await cartObject
+            .push(product)
+            .write();
+            
+          res.send(addingToCart)
+
+    } else if (cartId.id == bodyitemId) {
+        
+          console.log(" Running else if: Increment cart-item")
+
+          itemId = await cartObject
+          .find({id:bodyitemId})
+          .value()
+
+          itemQuantity = itemId.quantity +1;
+
+          increment = await cartObject
+          .find({id:bodyitemId})
+          .assign({quantity: itemQuantity})
+          .write()
+
+          res.send(increment)
+           
+    } 
+    else {
+      res.status(404).send("Computor says no! https://tenor.com/view/computer-says-no-no-gif-12232216");
+      console.log("Shit went down and you did the impossible and tried to add a product thats not in our database. Congratulation for being a hacker or just a dumbass!")
+      }
+    } catch(err) {
+      console.log(err)
+    }
+});
+
+
+// ******* Decrement and remove cart-item *******
+app.delete('/decrement', async (req, res) => {
     const bodyitemId = req.body.productId
  
         product = await database.get('products')
@@ -53,55 +105,42 @@ app.post('/addToCart', async (req, res) => {
           .find( {id:bodyitemId} )
           .value();
 
-        addToCart = await database.get('cart')   
+        cartObject = await database.get('cart')
 
+        itemId = await cartObject
+        .find({id:bodyitemId})
+        .value()
+        itemQuantity = itemId.quantity -1;
 
         console.log(cartId.id, "CartID")
         console.log(bodyitemId, "bodyid")
 
-    if(cartId === undefined) {
-          console.log(" Running if: add item to cart")
-          adding = await addToCart
-            .push(product)
-            .write();
-            
-          res.send(adding)
+    if(itemId.id == bodyitemId && itemId.quantity > 1) {
+      console.log("decrement cart quantity")
+      increment = await cartObject
+      .find({id:bodyitemId})
+      .assign({quantity: itemQuantity})
+      .write()
 
-    } else if (cartId.id == bodyitemId) {
-        try {
-          console.log(" Running else if: Increment cart-item")
+      res.send(increment)
+    } else if (itemId.id == bodyitemId && itemId.quantity <= 1){
+      console.log("else id: splice cart item")
+      cartIndex =await cartObject
+      .findIndex({id:bodyitemId})
+      .value()
 
-          itemId = await addToCart
-          .find({id:bodyitemId})
-          .value()
 
-          itemQuantity = itemId.quantity +1;
+      deleteFromCart = await cartObject
+      .splice(cartIndex, 1)
+      .write()
 
-          increment = await addToCart
-          .find({id:bodyitemId})
-          .assign({quantity: itemQuantity})
-          .write()
+      res.send(deleteFromCart)
 
-          res.send(increment)
-        
-          } catch(err) {
-          console.log(err)
-        }
-    } 
-    else {
-      res.status(404).send("Computor says no! https://tenor.com/view/computer-says-no-no-gif-12232216");
-      console.log("shit went down and you did the impossible and tried to add a product thats not in our database. Congratulation for being a hacker or just a dumbass!")
-      }
+    } else {
+      res.status(404).send("error 404, cant delete what doesnt exist");
+      console.log("delete error")
+    }
 
-});
-
-// ******* Decrement and remove cart-item *******
-app.delete("/delete", async (request, response) => {
-
-    data = await database.get('cart')
-      .remove({id:1})
-      .write();
-      response.send(data)
 });
 
 
@@ -115,4 +154,3 @@ console.log(`Creating server on port: ${porting}`))
 app.use((req, res,) =>{
     res.status(404).send("404 site does not exist");
 });
-
