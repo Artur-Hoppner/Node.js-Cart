@@ -6,10 +6,10 @@ I denna inlämningsuppgift ska du bygga en Node.JS-applikation för en e-handels
 
 **Krav på funktionalitet**
 * Endpoint:s för följande:
-    * Hämta alla produkter (sedan nedan på vad en produkt ska innehålla).
+    * Hämta alla produkter (sedan nedan på vad en produkt ska innehålla). **** KLAR ****
     * Kunna lägga till produkter i en varukorg.
     * Kunna ta bort produkter i varukorgen.
-    * Hämta varukorgen med alla tillagda produkter.
+    * Hämta varukorgen med alla tillagda produkter. **** KLAR ****
 * Man ska inte kunna lägga till samma produkt i varukorgen igen.
 * Man ska få ett felmeddelande om man försöker lägga till en produkt som inte finns.
 * Man ska få ett felmeddelande om man försöker ta bort en produkt som inte finns.

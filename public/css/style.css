@@ -1,0 +1,20 @@
+body {
+    background-color: rgba(231, 231, 231, 0.61);
+    margin: 1rem;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    flex-direction: column;
+};
+
+nes-btn {
+background-color: red;
+width: 10%;
+}
+
+
+ul {
+    list-style-type: none;
+    /* border: solid 1px tan; */
+    padding: 1rem;
+}
