@@ -29,17 +29,10 @@ function productList(response){
             productPrice.classList.add("product-price");
             productListContainer.append(productPrice);
             
-            // productImg = document.createElement("img");
-            
-            // productImg.setAttribute("src", item.img);
-            // productListContainer.append(productImg);
-
-            let productImg = document.createElement("img");
-            console.log(item.img)
-            productImg.src = "nhjdfks";
-            console.log(productImg)
-            productListContainer.appendChild(productImg);
-            console.log(productImg)
+            productImg = document.createElement("img");
+            productImg.src = item.img;
+            productImg.classList.add("imgage");
+            productListContainer.append(productImg);
 
             incrementButton = document.createElement('BUTTON');
             incrementButton.innerHTML = "Add Product";

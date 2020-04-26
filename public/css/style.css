@@ -7,14 +7,18 @@ body {
     flex-direction: column;
 };
 
+.imgage {
+    width: 1px;
+};
+
 nes-btn {
 background-color: red;
 width: 10%;
-}
+};
 
 
 ul {
     list-style-type: none;
     /* border: solid 1px tan; */
     padding: 1rem;
-}
+};

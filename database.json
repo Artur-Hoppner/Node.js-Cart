@@ -3,81 +3,60 @@
     {
       "id": 1,
       "name": "pen",
-      "img": "url",
+      "img": "https://placeimg.com/640/480/any?t=1580125440902",
       "price": 20,
-      "quantity": 12
+      "quantity": 17
     },
     {
       "id": 2,
       "name": "paper",
-      "img": "url",
+      "img": "https://placeimg.com/640/480/any?t=1580125440902",
       "price": 10,
       "quantity": 3
     },
     {
       "id": 3,
       "name": "penholder",
-      "img": "url",
+      "img": "https://placeimg.com/640/480/any?t=1580125440902",
       "price": 102,
       "quantity": 2
     },
     {
       "id": 4,
       "name": "pen",
-      "img": "url",
+      "img": "https://placeimg.com/640/480/any?t=1580125440902",
       "price": 60,
       "quantity": 3
     },
     {
       "id": 5,
       "name": "computor",
-      "img": "url",
+      "img": "https://placeimg.com/640/480/any?t=1580125440902",
       "price": 200,
       "quantity": 1
     },
     {
       "id": 6,
       "name": "copymachine",
-      "img": "url",
+      "img": "https://placeimg.com/640/480/any?t=1580125440902",
       "price": 20,
       "quantity": 1
     },
     {
       "id": 7,
       "name": "coffe",
-      "img": "url",
+      "img": "https://placeimg.com/640/480/any?t=1580125440902",
       "price": 200000,
       "quantity": 1
     }
   ],
   "cart": [
     {
-      "id": 2,
-      "name": "paper",
-      "img": "url",
-      "price": 10,
-      "quantity": 3
-    },
-    {
       "id": 1,
       "name": "pen",
-      "img": "url",
+      "img": "https://placeimg.com/640/480/any?t=1580125440902",
       "price": 20,
-      "quantity": 12
-    },
-    {
-      "id": 4,
-      "name": "pen",
-      "img": "url",
-      "price": 60,
-      "quantity": 3
-    },
-    {
-      "id": 3,
-      "name": "penholder",
-      "img": "url",
-      "price": 102,
-      "quantity": 2
+      "quantity": 17
     }
   ]
 }
