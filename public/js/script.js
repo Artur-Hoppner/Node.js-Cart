@@ -19,25 +19,30 @@ function productList(response){
         (item) => {
             const productListContainer = document.querySelector("#productListContainer");
             // need all three lines. Can shorten the code and add create element and inneHTML together. But then you cant add class in this manner.
-            productName = document.createElement('li');
+            
+            productContainer = document.createElement('div');
+            productContainer.classList.add("nes-container", "is-rounded", "is-dark");
+            productListContainer.append(productContainer);
+
+            productName = document.createElement('p');
             productName.innerHTML = item.name;
             productName.classList.add("product-name");
-            productListContainer.append(productName);
-
-            productPrice = document.createElement('li');
-            productPrice.innerHTML = item.price;
-            productPrice.classList.add("product-price");
-            productListContainer.append(productPrice);
+            productContainer.append(productName);
             
             productImg = document.createElement("img");
             productImg.src = item.img;
             productImg.classList.add("image");
-            productListContainer.append(productImg);
+            productContainer.append(productImg);
+
+            productPrice = document.createElement('p');
+            productPrice.innerHTML = item.price + "kr";
+            productPrice.classList.add("product-price");
+            productContainer.append(productPrice);
 
             incrementButton = document.createElement('BUTTON');
             incrementButton.innerHTML = "Add Product";
             incrementButton.classList.add("nes-btn", "is-success");
-            productListContainer.append(incrementButton);
+            productContainer.append(incrementButton);
 
             incrementButton.addEventListener("click", () => {
                 productId = item.id

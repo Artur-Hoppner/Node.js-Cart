@@ -1,19 +1,11 @@
 .image {
 
     width: 100%;
+    max-width: 40vw;
     height: auto;
     opacity: 90%;
     border-radius: 3%;
-    padding: 2vh;
-};
-
-.product-button {
-    opacity: 10%;
-color: red;}
-
-li {
+    padding: 1vh;
     list-style-type: none;
-}
-.product-price {
-    font-size: 1.2rem;
-}
+
+};
