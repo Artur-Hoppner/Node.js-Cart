@@ -31,12 +31,12 @@ function productList(response){
             
             productImg = document.createElement("img");
             productImg.src = item.img;
-            productImg.classList.add("imgage");
+            productImg.classList.add("image");
             productListContainer.append(productImg);
 
             incrementButton = document.createElement('BUTTON');
             incrementButton.innerHTML = "Add Product";
-            incrementButton.classList.add("jdkjslf");
+            incrementButton.classList.add("nes-btn", "is-success");
             productListContainer.append(incrementButton);
 
             incrementButton.addEventListener("click", () => {
@@ -109,7 +109,7 @@ function cartList(response){
 
             incrementButton = document.createElement('BUTTON');
             incrementButton.innerHTML = "Increase";
-            incrementButton.classList.add("nes-btn");
+            incrementButton.classList.add("nes-btn", "jdklsad");
             cartListContainer.append(incrementButton);
 
             incrementButton.addEventListener("click", () => {

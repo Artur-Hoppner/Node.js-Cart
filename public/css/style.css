@@ -1,24 +1,19 @@
-body {
-    background-color: rgba(231, 231, 231, 0.61);
-    margin: 1rem;
-    display: flex;
-    align-items: center;
-    /* justify-content: center; */
-    flex-direction: column;
+.image {
+
+    width: 100%;
+    height: auto;
+    opacity: 90%;
+    border-radius: 3%;
+    padding: 2vh;
 };
 
-.imgage {
-    width: 1px;
-};
+.product-button {
+    opacity: 10%;
+color: red;}
 
-nes-btn {
-background-color: red;
-width: 10%;
-};
-
-
-ul {
+li {
     list-style-type: none;
-    /* border: solid 1px tan; */
-    padding: 1rem;
-};
+}
+.product-price {
+    font-size: 1.2rem;
+}
