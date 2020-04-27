@@ -144,7 +144,7 @@ function cartList(response){
 )
 console.log(totalQuantity, "totalQuantity")
 
-document.getElementById("totalQuantity").innerHTML = totalQuantity;
+document.getElementById("totalQuantity").innerHTML = "[" + totalQuantity + "]";
 };
 
 
@@ -165,19 +165,3 @@ function deleteCartItem(productId) {
     console.error(error);
 });
   };
-
-
-
-
-
-  // totalPrice: state => {
-  //   let total = 0
-  //   state.cart.forEach((cart)  => {
-      
-  //       total += cart.price * cart.quantity
-       
-
-  //   });
-    
-  //   return total
-  // },
