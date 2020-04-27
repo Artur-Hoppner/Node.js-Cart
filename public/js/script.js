@@ -93,37 +93,36 @@ getCart();
 // ******** Add cartProduct to html elementa ********
 function cartList(response){
   totalQuantity = 0;
-    
+  totalPrice = 0;
     response.forEach(
         (item) => {
-            const cartListContainer = document.querySelector("#cartListContainer");
-            // need all three lines. Can shorten the code and add create element and inneHTML together. But then you cant add class in this manner.
-            productName = document.createElement('li');
+            const conatinerCart = document.querySelector("#cartListContainer");
+
+
+
+            totalQuantity += item.quantity
+
+
+            totalPrice += item.quantity  * item.price 
+
+          
+            cartListContainer = document.createElement('div');
+            cartListContainer.classList.add("nes-container", "is-rounded", "is-dark");
+            conatinerCart.append(cartListContainer);
+
+            productName = document.createElement('p');
             productName.innerHTML = item.name;
             productName.classList.add("cart-name");
             cartListContainer.append(productName);
 
-            productPrice = document.createElement('li');
-            productPrice.innerHTML = item.price;
+            productPrice = document.createElement('p');
+            productPrice.innerHTML = item.price + "kr";
             productPrice.classList.add("cart-price");
             cartListContainer.append(productPrice);
 
-            productquantity = document.createElement('li');
-            productquantity.innerHTML = item.quantity;
-            productquantity.classList.add("cart-quantity");
-            cartListContainer.append(productquantity);
-
-            totalPrice = document.createElement('li');
-            totalPrice.innerHTML = item.price * item.quantity;
-            totalPrice.classList.add("total-price");
-            cartListContainer.append(totalPrice);
-
-            totalQuantity += item.quantity
-           
-
             incrementButton = document.createElement('BUTTON');
-            incrementButton.innerHTML = "Increase";
-            incrementButton.classList.add("nes-btn", "jdklsad");
+            incrementButton.innerHTML = "+";
+            incrementButton.classList.add("nes-btn", "is-success");
             cartListContainer.append(incrementButton);
 
             incrementButton.addEventListener("click", () => {
@@ -132,20 +131,25 @@ function cartList(response){
             });
 
             decrementButton = document.createElement('BUTTON');
-            decrementButton.innerHTML = "Decrease";
-            decrementButton.classList.add("nes-btn", "decrement-button");
+            decrementButton.innerHTML = "-";
+            decrementButton.classList.add("nes-btn", "is-error");
             cartListContainer.append(decrementButton);
 
             decrementButton.addEventListener("click", () => {
                 productId = item.id
                 deleteCartItem(productId);
             });
+            
         }
 )
-console.log(totalQuantity, "totalQuantity")
 
 document.getElementById("totalQuantity").innerHTML = "[" + totalQuantity + "]";
+document.getElementById("totalCartPrice").innerHTML = "TOTAL: " + totalPrice + "kr";
+
+
+
 };
+
 
 
 function deleteCartItem(productId) {

@@ -5,7 +5,7 @@
       "name": "LEGO: NINTENDO",
       "img": "https://images.unsplash.com/photo-1560167016-022b78a0258e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1047&q=80",
       "price": 6700,
-      "quantity": 4
+      "quantity": 6
     },
     {
       "id": 2,
@@ -40,7 +40,7 @@
       "name": "Gamecube",
       "img": "https://images.unsplash.com/photo-1494666144702-70d86c6cf884?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
       "price": 5,
-      "quantity": 1
+      "quantity": 3
     },
     {
       "id": 7,
@@ -56,7 +56,28 @@
       "name": "LEGO: NINTENDO",
       "img": "https://images.unsplash.com/photo-1560167016-022b78a0258e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1047&q=80",
       "price": 6700,
-      "quantity": 4
+      "quantity": 1
+    },
+    {
+      "id": 3,
+      "name": "SUPER NINTENDO Controll",
+      "img": "https://images.unsplash.com/photo-1531594835867-65b60cc9e4ff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
+      "price": 1300,
+      "quantity": 1
+    },
+    {
+      "id": 4,
+      "name": "GAME BOY & TETRIS",
+      "img": "https://images.unsplash.com/photo-1555864326-5cf22ef123cf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1047&q=80",
+      "price": 1400,
+      "quantity": 1
+    },
+    {
+      "id": 7,
+      "name": "Muggler for HIRE",
+      "img": "https://image.freepik.com/free-photo/portrait-smiling-bearded-man-holding-silver-personal-computer-looking-upward-isolated-dark-gray-wall_171337-612.jpg",
+      "price": 37000,
+      "quantity": 1
     }
   ]
 }
