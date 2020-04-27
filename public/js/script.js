@@ -15,6 +15,7 @@ getProduct();
 
 // ******** Add product to html elementa ********
 function productList(response){ 
+
     response.forEach(
         (item) => {
             const productListContainer = document.querySelector("#productListContainer");
@@ -39,6 +40,7 @@ function productList(response){
             productPrice.classList.add("product-price");
             productContainer.append(productPrice);
 
+
             incrementButton = document.createElement('BUTTON');
             incrementButton.innerHTML = "Add Product";
             incrementButton.classList.add("nes-btn", "is-success");
@@ -49,7 +51,9 @@ function productList(response){
                 addProductToCart(productId);
             });
       }   
-)};
+)
+
+};
 
 /*****  ADD TO CART/ INCREASE QUANTITY *****/
   function addProductToCart(productId) {
@@ -88,6 +92,8 @@ getCart();
 
 // ******** Add cartProduct to html elementa ********
 function cartList(response){
+  totalQuantity = 0;
+    
     response.forEach(
         (item) => {
             const cartListContainer = document.querySelector("#cartListContainer");
@@ -108,9 +114,12 @@ function cartList(response){
             cartListContainer.append(productquantity);
 
             totalPrice = document.createElement('li');
-            totalPrice.innerHTML += item.price * item.quantity;
+            totalPrice.innerHTML = item.price * item.quantity;
             totalPrice.classList.add("total-price");
             cartListContainer.append(totalPrice);
+
+            totalQuantity += item.quantity
+           
 
             incrementButton = document.createElement('BUTTON');
             incrementButton.innerHTML = "Increase";
@@ -132,7 +141,11 @@ function cartList(response){
                 deleteCartItem(productId);
             });
         }
-)};
+)
+console.log(totalQuantity, "totalQuantity")
+
+document.getElementById("totalQuantity").innerHTML = totalQuantity;
+};
 
 
 function deleteCartItem(productId) {
@@ -152,3 +165,19 @@ function deleteCartItem(productId) {
     console.error(error);
 });
   };
+
+
+
+
+
+  // totalPrice: state => {
+  //   let total = 0
+  //   state.cart.forEach((cart)  => {
+      
+  //       total += cart.price * cart.quantity
+       
+
+  //   });
+    
+  //   return total
+  // },
