@@ -74,6 +74,7 @@ app.post('/addToCart', async (req, res) => {
           .value()
 
           itemQuantity = itemId.quantity +1;
+          console.log(itemId.img, "testing Img object")
 
           increment = await cartObject
           .find({id:bodyitemId})

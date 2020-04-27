@@ -3,32 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Webshop</title>
+
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
-    <link rel="stylesheet" href="css/style.css">
-
+    <link  href="css/style.css" rel="stylesheet">
 </head>
-<body>
-    <h1>WEBBSHOP</h1>
+<body style="padding: 1.5vw; background-color: rgba(233, 235, 232, 0.692);">
+    <main style="max-width: 1000px;">
+                <div   style="display: flex; flex-direction: row; justify-content: space-between;">
+                    <a href="cart.html" class="nes-badge is-splited" id="quantit-container">
+                        <span class="is-dark">CART</span>
+                        <span class="is-success" id="totalQuantitymenu"></span>
+                      </a>
+                    <a href="https://github.com/jenseneducation-Artur-Hoppner"><i class="nes-icon github is-large"></i></a>
 
-    <div class="nes-container is-dark with-title testing">
-        <p class="title">Products</p>
-        <ul id="productListContainer" >    
-        </ul>
-      </div>
+                </div>
+ 
 
-    <h2>Cart</h2>
-    <h3 id="cartItem"></h3>    <article class="all-products">
-        <ul id="cartListContainer"  >
+          
+          <h1 style="font-size: 2.3rem; text-align: center;" >NeRDSHOP</h1>
 
-        </ul>
-    </article>
+    <div class="nes-container is-dark with-title is-centered">
+        <p class="title">PRODUCTS</p>
+        <article id="productListContainer" >    
+        </article>
+    </div>
 
-    <article class="whole-cart">
 
-    </article>
-    <a href="https://github.com/jenseneducation-Artur-Hoppner"><i class="nes-icon github is-large"></i></a>
+</main>
 
     <script src="js/script.js"></script>
 </body>
