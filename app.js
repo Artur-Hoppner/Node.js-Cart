@@ -108,8 +108,7 @@ app.post('/addToCart', async (req, res) => {
 
 // ******* Decrement and remove cart-item *******
 app.delete('/decrement', async (req, res) => {
-    const bodyitemId = 1
-    // req.body.productId
+    const bodyitemId = req.body.productId
  
 
         cartId = await database.get('cart')
