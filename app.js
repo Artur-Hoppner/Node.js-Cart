@@ -127,7 +127,7 @@ app.delete('/decrement', async (req, res) => {
           
           let errorMessage = {
             success: false,
-            message: "error 400. Product does not exist, cant execute decrement"
+            message: "Error 400. Product does not exist, cant execute decrement"
 
           };
 
