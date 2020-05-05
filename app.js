@@ -56,17 +56,29 @@ app.post('/addToCart', async (req, res) => {
 
         cartObject = await database.get('cart')   
 
+        if(product == undefined ) {
+         let errorMessage = {
+              success: false,
+              message: "Product does not exist"
 
-    if(cartId == undefined) {
+            };
+
+            res.status(400).send(errorMessage);
+
+    } else if(bodyitemId == product.id && cartId == undefined) {
+      console.log(product, "product id")
+      console.log(cartId, "cart id")
+
           console.log(" Running if: add item to cart")
           addingToCart = await cartObject
             .push(product)
-            .write();
+            ;
             
           res.send(addingToCart)
 
     } else if (cartId.id == bodyitemId) {
-        
+      console.log(product.id)
+
           console.log(" Running else if: Increment cart-item")
 
           itemId = await cartObject
@@ -85,7 +97,7 @@ app.post('/addToCart', async (req, res) => {
            
     } 
     else {
-      res.status(404).send("Computor says no! https://tenor.com/view/computer-says-no-no-gif-12232216");
+      res.status(400).send("Computor says no! https://tenor.com/view/computer-says-no-no-gif-12232216");
       console.log("Shit went down and you did the impossible and tried to add a product thats not in our database. Congratulation for being a hacker or just a dumbass!")
       }
     } catch(err) {
@@ -96,11 +108,9 @@ app.post('/addToCart', async (req, res) => {
 
 // ******* Decrement and remove cart-item *******
 app.delete('/decrement', async (req, res) => {
-    const bodyitemId = req.body.productId
+    const bodyitemId = 1
+    // req.body.productId
  
-        product = await database.get('products')
-          .find( {id:bodyitemId})
-          .value();
 
         cartId = await database.get('cart')
           .find( {id:bodyitemId} )
@@ -111,13 +121,22 @@ app.delete('/decrement', async (req, res) => {
         itemId = await cartObject
         .find({id:bodyitemId})
         .value()
-        itemQuantity = itemId.quantity -1;
 
-        console.log(cartId.id, "CartID")
-        console.log(bodyitemId, "bodyid")
+      
+        if (cartId == undefined) {
+          
+          let errorMessage = {
+            success: false,
+            message: "Error 400. Product does not exist, cant execute decrement"
 
-    if(itemId.id == bodyitemId && itemId.quantity > 1) {
+          };
+
+          res.status(400).send(errorMessage);
+        }
+
+      else if(itemId.id == bodyitemId && itemId.quantity > 1) {
       console.log("decrement cart quantity")
+      itemQuantity = itemId.quantity -1;
       increment = await cartObject
       .find({id:bodyitemId})
       .assign({quantity: itemQuantity})
@@ -138,8 +157,8 @@ app.delete('/decrement', async (req, res) => {
       res.send(deleteFromCart)
 
     } else {
-      res.status(404).send("error 404, cant delete what doesnt exist");
-      console.log("delete error")
+      send.res(400).send("Some unknown error occurred")
+      console.log("Some unknown error occurred")
     }
 
 });
